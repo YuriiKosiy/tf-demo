@@ -32,9 +32,3 @@ variable "GKE_POOL_NAME" {
   default     = "main"
   description = "GKE pool name"
 }
-
-variable "GKE_DISK_SIZE_GB" {
-  type        = number
-  default     = 30
-  description = "Minimum disk size in GB for GKE nodes"
-}
