@@ -32,3 +32,13 @@ variable "GKE_POOL_NAME" {
   default     = "main"
   description = "GKE pool name"
 }
+
+variable "github_owner" {
+  type        = string
+  description = "The GitHub owner"
+}
+
+variable "github_token" {
+  type        = string
+  description = "GitHub personal access token"
+}
