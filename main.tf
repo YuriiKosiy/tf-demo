@@ -8,9 +8,9 @@ module "gke_cluster" {
   GKE_POOL_NAME    = var.GKE_POOL_NAME
 }
 
-terraform {
-  backend "gcs" {
-    bucket = "p72-demo"
-    prefix = "terraform/state"
-  }
-}
+#terraform {
+#  backend "gcs" {
+#    bucket = "p72-demo"
+#    prefix = "terraform/state"
+#  }
+#}
