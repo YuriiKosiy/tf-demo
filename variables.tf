@@ -33,12 +33,18 @@ variable "GKE_POOL_NAME" {
   description = "GKE pool name"
 }
 
-variable "github_owner" {
+variable "GITHUB_OWNER" {
   type        = string
   description = "The GitHub owner"
 }
 
-variable "github_token" {
-  type        = string
+variable "GITHUB_TOKEN" {
   description = "GitHub personal access token"
+  type        = string
+  sensitive   = true
+}
+
+variable "FLUX_GITHUB_REPO" {
+  description = "Name of the GitHub repository used by Flux"
+  type        = string
 }
