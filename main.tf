@@ -12,7 +12,7 @@ module "gke_cluster" {
   GOOGLE_REGION    = var.GOOGLE_REGION
   GOOGLE_PROJECT   = var.GOOGLE_PROJECT
   GKE_MACHINE_TYPE = var.GKE_MACHINE_TYPE
-  GKE_NUM_NODES    = var.GKE_NUM_NODES
+  GKE_NUM_NODES    = 1
   GKE_CLUSTER_NAME = var.GKE_CLUSTER_NAME
   GKE_POOL_NAME    = var.GKE_POOL_NAME
 }
@@ -22,6 +22,7 @@ module "flux_bootstrap" {
   github_repository = "${var.GITHUB_OWNER}/${var.FLUX_GITHUB_REPO}"
   private_key       = module.tls_private_key.private_key_pem
   config_path       = module.gke_cluster.kubeconfig
+  github_token      = var.GITHUB_TOKEN
 }
 
 module "tls_private_key" {
