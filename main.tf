@@ -1,5 +1,5 @@
 module "github_repository" {
-  source                   = "github.com/YuriiKosiy/tf-github-repository"
+  source                   = "github.com/den-vasyliev/tf-github-repository"
   github_owner             = var.GITHUB_OWNER
   github_token             = var.GITHUB_TOKEN
   repository_name          = var.FLUX_GITHUB_REPO
@@ -8,7 +8,7 @@ module "github_repository" {
 }
 
 module "gke_cluster" {
-  source           = "github.com/YuriiKosiy/tf-google-gke-cluster"
+  source           = "github.com/den-vasyliev/tf-google-gke-cluster"
   GOOGLE_REGION    = var.GOOGLE_REGION
   GOOGLE_PROJECT   = var.GOOGLE_PROJECT
   GKE_MACHINE_TYPE = var.GKE_MACHINE_TYPE
@@ -17,8 +17,16 @@ module "gke_cluster" {
   GKE_POOL_NAME    = var.GKE_POOL_NAME
 }
 
+module "flux_bootstrap" {
+  source            = "github.com/den-vasyliev/tf-fluxcd-flux-bootstrap"
+  github_repository = "${var.GITHUB_OWNER}/${var.FLUX_GITHUB_REPO}"
+  private_key       = module.tls_private_key.private_key_pem
+  config_path       = module.gke_cluster.kubeconfig
+}
+
+
 module "tls_private_key" {
-  source    = "github.com/YuriiKosiy/tf-hashicorp-tls-keys"
+  source    = "github.com/den-vasyliev/tf-hashicorp-tls-keys"
   algorithm = "RSA"
 }
 
